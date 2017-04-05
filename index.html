@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.2.0.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>movie ticket price</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>MOVIE TICKETS</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Make a selection:</h2>
+          <form id="movie-ticket">
+            <div class="form-group">
+              <select class="form-control" id="movies">
+              <option value="old">Terminator</option>
+              <option value="old">Some Like It Hot</option>
+              <option value="new">Also crap</option>
+              <option value="new">Some crap</option>
+              </select>
+              <h2>Age:</h2>
+              <select class="form-control" id="age">
+              <option value="youth">under 14</option>
+              <option value="adult">15 to 65</option>
+              <option value="senior">over 65</option>
+              </select>
+              <h2>Show Time</h2>
+              <select class="form-control" id="time">
+              <option value="morning">Morning</option>
+              <option value="evening">Evening</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="price-check">Get Ticket Price</span></button>
+
+          </form>
+
+          <div class="col-md-6">
+            <div id="show-price">
+
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Ticket Price:</h2>
+            <!-- <p id="ticket-price"> -->
+              Your ticket cost $<span class="price"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

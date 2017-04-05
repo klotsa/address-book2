@@ -1,85 +1,66 @@
 //business logic
-function Contact(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-  this.address = [];
+function Ticket(movie, age, time) {
+  this.movieType = movie;
+  this.ageType = age;
+  this.timeType = time;
+  console.log("1");
+}
+console.log("2");
+
+Ticket.prototype.ticketPrice = function () {
+  var total = 0;
+  var movieCost = 0;
+  var ageCost = 0;
+  var timeCost = 0;
+    console.log("3");
+
+
+if (this.movieType === "old") {
+  movieCost = 10;
+} else {
+  movieCost = 15;
+
+}
+  alert(movieCost);
+console.log("4");
+
+if(this.ageType === "adult") {
+  ageCost = 10;
+} else {
+  ageCost = 5;
+}
+alert(ageCost);
+
+if (this.timeCost === "morning") {
+  timeCost = 5;
+
+} else {
+  timeCost = 10;
+
+}
+alert(timeCost);
+   total = movieCost + ageCost + timeCost;
+   console.log(total);
 }
 
-function Address(street, city, state)  {
-  this.street = street;
-  this.city = city;
-  this.state = state;
-}
 
-Contact.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
-}
 
-Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
-}
 
 
 // user interface logic
 $(document).ready(function() {
 
-  $("#add-address").click(function() {
-     $("#new-addresses").append('<div class="new-address">' +
-                                  '<div class="form-group">' +
-                                    '<label for="new-street">Street</label>' +
-                                    '<input type="text" class="form-control new-street">' +
-                                  '</div>' +
-                                  '<div class="form-group">' +
-                                    '<label for="new-city">City</label>' +
-                                    '<input type="text" class="form-control new-city">' +
-                                  '</div>' +
-                                  '<div class="form-group">' +
-                                    '<label for="new-state">State</label>' +
-                                    '<input type="text" class="form-control new-state">' +
-                                  '</div>' +
-                                '</div>');
-   });
-
-  $("form#new-contact").submit(function(event) {
+  $("form#movie-ticket").submit(function(event) {
     event.preventDefault();
 
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
+    var movieInput = $("#movies").val();
+    var ageInput = $("#age").val();
+    var timeInput = $("#time").val();
+    var newTicket = new Ticket(movieInput, timeInput, ageInput);
 
-    $(".new-address").each(function() {
-      var inputtedStreet = $(this).find("input.new-street").val();
-      var inputtedCity = $(this).find("input.new-city").val();
-      var inputtedState = $(this).find("input.new-state").val();
-      if(!inputtedStreet || !inputtedCity || !inputtedState)
-      {
-        $(this).remove(".new-address");
-      }
-      else
-      {
-        var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState)
-        newContact.address.push(newAddress);
-      }
-    });
+    console.log(movieInput, ageInput, timeInput);
+    // $("#ticket-price").show();
+    $(".price").text(newTicket.ticketPrice());
 
-
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
-
-    $(".contact").last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.firstName);
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
-      $("ul#addresses").text("");
-        newContact.address.forEach(function(address) {
-          $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
-        });
-      });
-
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input.new-street").val("");
-    $("input.new-city").val("");
-    $("input.new-state").val("");
   });
 });
